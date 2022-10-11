@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{ num }}</p>
+        <app-header></app-header>
+        <app-header v-on:passemit ="logText"></app-header>
+        <app-content1 v-on:increase="increaseNumber"></app-content1>
+        <app-content2 v-on:emitcontent="subNum"></app-content2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script>
+        let appHeader = {
+            template: `<button v-on:click="clickEvent">click me</button>`,
+            methods: {
+                clickEvent: function(){
+                    this.$emit('passemit');
+                }
+            }
+        }
+        let appContent1 = {
+            template: '<button v-on:click="addNumber">add</button>',
+            methods: {
+                addNumber: function(){
+                    this.$emit('increase')
+                },
+            }
+        }       
+        let appContent2 = {
+            template: '<button v-on:click="subNumber">sub</button>',
+            methods: {
+                subNumber: function(){
+                    this.$emit('emitcontent')
+                },
+            }
+        }                
+        let vm = new Vue({
+            el: '#app',
+            
+            components: {
+                'app-header': appHeader,
+                'app-content1': appContent1,
+                'app-content2': appContent2,
+            },
+            methods: {
+                logText: function(){
+                    console.log("console.log");
+                },
+                increaseNumber: function(){
+                    this.num++;
+                },
+                subNum: function(){
+                    this.num--;
+                },
+            },
+            data: {
+                num: 10
+            }
+        });
+    </script>
+</body>
+</html>
+

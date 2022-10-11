@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header v-on:htr="rootHeader"></app-header>
+        <app-content v-on:ctr="rootcontent"></app-content>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script>
+    //  1.각각 컴포넌트 2개다 emit으로 데이터 올려보기 
+    //  2.root data poprs 로 받아오기  
+    //  3.appHeader data headerData를 root로 emit하고 content에서 props로 데이터를 받아서 화면에 뿌려준다. 
+        let appHeader = {
+            template: `<div><button v-on:click="headerToRoot">Header</button></div>`,
+            data:{
+                headerData: 'headerTocontent',
+            },
+            methods:{
+                headerToRoot: function(){
+                    console.log(`headerToRoot call`);
+                    console.log(this.headerEmitData);
+                    this.$emit('htr',44);
+                }
+            },
+        };
+        let appContent = {
+            template: `<div><button v-on:click="contentToRoot">Content</button></div>`,
+            methods:{
+                contentToRoot: function(){
+                    console.log(`contentToRoot call`);
+                    this.$emit('ctr',22);
+                }
+            },
+
+        };
+        let vm = new Vue({
+            el: '#app',
+            methods:{
+                rootHeader: function(value){
+                    console.log(`rootHeader value  = ${value}`)
+                },
+                rootcontent: function(value){
+                    console.log(`rootcontent value = ${value}`)
+                },
+            },            
+            components:{
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            props:[],
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

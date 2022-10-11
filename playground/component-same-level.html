@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header v-bind:propsnum="num"></app-header>
+        <app-Content v-on:pass="deliverynum"></app-Content>
+        <h1>{{ num }}</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script>
+        let appHeader = {
+            // template: `<div>Header</div>`,
+            template: `<div>{{propsnum}}</div>`,
+            props:['propsnum']
+        }
+        let appContent = {
+            template: `<div>Content<button v-on:click="passNum">pass</button></div>`,
+            methods: {
+                passNum: function(){
+                    // this.$emit('pass',10);
+                    this.$emit('pass',10,20);
+                },
+            },
+        }
+        let vm = new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent,
+            },
+            data: {
+                num: 0
+            },
+            methods:{
+                // deliverynum: function(value)
+                deliverynum: function(value1,value2){
+                    this.num = value1+value2;
+                },
+            }
+        });
+    </script>
+</body>
+</html>

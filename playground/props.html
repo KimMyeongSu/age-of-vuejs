@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ message }} <br/>
+        {{ tempText }}
+
+        <app-header v-bind:propsdata="message" ></app-header>
+        <app-header :propsdata="tempText"></app-header>
+        <app-content v-bind:propsnum="num"></app-content>
+        <app-content :propsnum="num"></app-content>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script>
+        let appHeader = {
+            template: '<h1>{{ propsdata }}</h1>',
+            props: ['propsdata'],
+        }
+        let appContent = {
+            template: `<div>{{ propsnum }}</div>`,
+            props: ['propsnum'],
+        }
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue',
+                tempText: 'tempText',
+                num: 10,
+            },
+            // components: {
+            //     'app-header' : {
+            //         template: '<h1>Header</h1>',
+            //         props: ['propsProperty'],
+            //     },
+            // Object 로 담아서 할당도 가능 
+            components: {
+                'app-header' : appHeader,
+                'app-content' : appContent,
+            },
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
