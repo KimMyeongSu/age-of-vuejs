@@ -1,81 +1,43 @@
 <template>
-    <div class="inputBox shadow">
-      <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-      <span class="addContainer" v-on:click="addTodo">
-        <i class="addBtn fas fa-plus" aria-hidden="true"></i>
-      </span>
-  
-      <Modal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">
-          경고 
-          <i class="closeModalBtn fa fa-times" 
-            aria-hidden="true" 
-            @click="showModal = false">
-          </i>
-        </h3>
-        <p slot="body">할 일을 입력하세요.</p>
-      </Modal>
-    </div>
-  </template>
-  
-  <script>
-  import Modal from './common/Modal.vue'
-  
-  export default {
-    data: function() {
-      return {
-        newTodoItem: '',
-        showModal: false
-      }
-    },
-    methods: {
-      addTodo: function() {
-        if (this.newTodoItem !== '') {
-          const item = this.newTodoItem.trim();
-          //this.$emit('addItem', item);
-          this.$store.commit('addOneItem', item);
-          this.clearInput();
-        } else {
-          this.showModal = !this.showModal;
-        }
-      },
-      clearInput: function() {
-        this.newTodoItem = '';
-      }
-    },
-    components: {
-      Modal: Modal
-    }
-  }
-  </script>
-  
-  <style scoped>
-  input:focus {
-    outline: none;
-  }
-  .inputBox {
-    background: white;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 5px;
-  }
-  .inputBox input {
-    border-style: none;
-    font-size: 0.9rem;
-  }
-  .addContainer {
-    float: right;
-    background: linear-gradient(to right, #6478FB, #8763FB);
-    display: block;
-    width: 3rem;
-    border-radius: 0 5px 5px 0;
-  }
-  .addBtn {
-    color: white;
-    vertical-align: middle;
-  }
-  .closeModalBtn {
-    color: #42b983;
-  }
-  </style>
-  
+  <div class="inputBox shadow">
+    <!--input "newTodoItem"  동기화 할수 있도록 data와 메서드에서 localStoraeg 에 추가 -->
+    <input type="text">
+    <!-- click Evnet 로 "addTodo" 호출해서 localStorage에 데이터 넣기-->
+    <span class="addContainer">
+      <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+    </span>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+input:focus {
+  outline: none;
+}
+.inputBox {
+  background: white;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 5px;
+}
+.inputBox input {
+  border-style: none;
+  font-size: 0.9rem;
+}
+.addContainer {
+  float: right;
+  background: linear-gradient(to right, #6478FB, #8763FB);
+  display: block;
+  width: 3rem;
+  border-radius: 0 5px 5px 0;
+}
+.addBtn {
+  color: white;
+  vertical-align: middle;
+}
+</style>

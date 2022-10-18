@@ -1,21 +1,18 @@
 <template>
-  <div class="clearAllContainer">
-    <span class="clearAllBtn" v-on:click="clearTodo">Clear All</span>
+    <div class="clearAllContainer">
+    <!-- <span class="clearAllBtn" v-on:click="clearTodo">Clear All</span> -->
+    <span class="clearAllBtn">Clear All</span>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    clearTodo: function() {
-      //this.$emit('clearAll');
-      this.$store.commit('clearAllItems');
-    }
-  }
+
 }
 </script>
 
-<style scoped>
+<style>
+
 .clearAllContainer {
   width: 8.5rem;
   height: 50px;
@@ -26,6 +23,7 @@ export default {
 }
 .clearAllBtn {
   color: #e20303;
+  /* 추가 */
   display: block;
 }
 </style>
