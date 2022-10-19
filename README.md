@@ -5,3 +5,5 @@
 ## v-bind , v-on 
 
 ## props , Event(emit)
+
+기능 추가 10/21까지 완료해서 올려놓기
