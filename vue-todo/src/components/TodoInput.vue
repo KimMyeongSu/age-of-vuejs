@@ -1,9 +1,8 @@
 <template>
-  <div class="inputBox shadow">
+  <div class="inputBox shadow" >
     <!--input "newTodoItem"  동기화 할수 있도록 data와 메서드에서 localStoraeg 에 추가 -->
-    <input type="text">
-    <!-- click Evnet 로 "addTodo" 호출해서 localStorage에 데이터 넣기-->
-    <span class="addContainer">
+    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+    <span class="addContainer" @click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
   </div>
@@ -11,7 +10,31 @@
 
 <script>
 export default {
+  created(){  
+  },
+  data(){
+    return {
+      newTodoItem: "",
+    }
+  },
 
+  methods:{
+    addTodo: function(){
+      if(this.newTodoItem !==''){
+        
+      }
+      let itemObj = {
+        complete: false,
+        item: this.newTodoItem,
+      }
+      localStorage.setItem(this.newTodoItem,JSON.stringify(itemObj)); //Storage.setItem(keyName, keyValue) 
+      this.claerInput();
+      location.reload();
+    },
+    claerInput: function(){
+      this.newTodoItem= null;
+    },
+  }
 }
 </script>
 
