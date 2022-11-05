@@ -3,7 +3,7 @@
     <ul>
       <!-- v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" -->
 
-      <li class="shadow" v-for="(todoItem,index) in todoItems" :key="index">
+      <li class="shadow" v-for="(todoItem,index) in listTodoItems" :key="index">
         <!-- v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)" -->
         <i class="checkBtn fas fa-check"  
         :class="{checkBtnCompleted: todoItem.completed}" 
@@ -21,29 +21,12 @@
 
 <script>
 export default {
-  created(){
-    this.initTodoList();
-  },
-  data() {
-    return {
-      todoItems: [],
-    }
-  },
+  props: ['listTodoItems'],
   methods: {
-    initTodoList: function(){
-        if(localStorage.length > 0) {
-          for(let i =0; i <localStorage.length; i++){
-            if(localStorage.key(i) != 'loglevel:webpack-dev-server')
-            this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-          }
-        }
-    },
-
     removeTodo: function(todoItem,index){
       localStorage.removeItem(todoItem); //localStorage에서 삭제
-      this.todoItems.splice(index,1); // todoItem 배열에서 삭제
+      this.listTodoItems.splice(index,1); // todoItem 배열에서 삭제
     },
-
     toggleComplete: function(todoItem,index){
       todoItem.completed = !todoItem.completed;
       localStorage.removeItem(todoItem.item);
