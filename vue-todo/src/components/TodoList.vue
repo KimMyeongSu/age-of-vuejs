@@ -1,16 +1,11 @@
 <template>
     <section>
     <ul>
-      <!-- v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" -->
-
       <li class="shadow" v-for="(todoItem,index) in listTodoItems" :key="index">
-        <!-- v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)" -->
         <i class="checkBtn fas fa-check"  
         :class="{checkBtnCompleted: todoItem.completed}" 
         @click="toggleComplete(todoItem, index)"></i>
-        
         <span :class="{textCompleted: todoItem.completed}" >{{todoItem.item}}</span>
-        <!-- <span class="removeBtn" v-on:click="removeTodo(todoItem, index)"> -->
           <span class="removeBtn" @click="removeTodo(todoItem, index)">
           <i class="removeBtn fas fa-trash-alt"></i>
         </span>

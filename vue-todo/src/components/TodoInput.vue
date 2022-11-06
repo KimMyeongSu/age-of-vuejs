@@ -21,15 +21,11 @@ export default {
   methods:{
     addTodo: function(){
       if(this.newTodoItem !==''){
-        
-      }
-      let itemObj = {
-        complete: false,
-        item: this.newTodoItem,
-      }
-      localStorage.setItem(this.newTodoItem,JSON.stringify(itemObj)); //Storage.setItem(keyName, keyValue) 
-      this.claerInput();
-      location.reload();
+        console.log('call');
+        console.log(this.newTodoItem);
+        this.$emit('addTodoItem',this.newTodoItem)
+        this.claerInput();
+      }   
     },
     claerInput: function(){
       this.newTodoItem= null;

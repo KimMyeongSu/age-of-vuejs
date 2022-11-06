@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <!-- 하위컴포넌트에서 emit 으로 올려준 이벤트에 반환값이 자동으로 여기서 호출되는 함수로 넘겨짐 
+    지금은 단일데이터라서 그냥 바로 데이터로 보내지만 object로 받아서 상위컴포넌트에서 가공해서 사용가능
+    -->
+    <TodoInput @addTodoItem="addOneItem"></TodoInput>
     <TodoList :listTodoItems="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -18,6 +21,17 @@ export default {
     return {
       todoItems: []
     }
+  },
+  methods: {
+    addOneItem: function(todoItem){
+      let obj = {
+        completed: false,
+        item: todoItem
+      };
+      localStorage.setItem(todoItem,JSON.stringify(obj)); //localStorage에 할일 추가 
+      this.todoItems.push(obj);
+      
+    },
   },
   created: function() {
     if(localStorage.length > 0) {
