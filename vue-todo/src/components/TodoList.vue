@@ -19,8 +19,7 @@ export default {
   props: ['listTodoItems'],
   methods: {
     removeTodo: function(todoItem,index){
-      localStorage.removeItem(todoItem); //localStorage에서 삭제
-      this.listTodoItems.splice(index,1); // todoItem 배열에서 삭제
+      this.$emit('removeItem',todoItem,index)
     },
     toggleComplete: function(todoItem,index){
       todoItem.completed = !todoItem.completed;

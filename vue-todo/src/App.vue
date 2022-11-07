@@ -5,7 +5,7 @@
     지금은 단일데이터라서 그냥 바로 데이터로 보내지만 object로 받아서 상위컴포넌트에서 가공해서 사용가능
     -->
     <TodoInput @addTodoItem="addOneItem"></TodoInput>
-    <TodoList :listTodoItems="todoItems"></TodoList>
+    <TodoList :listTodoItems="todoItems" @removeItem="removeOneItem"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -30,7 +30,11 @@ export default {
       };
       localStorage.setItem(todoItem,JSON.stringify(obj)); //localStorage에 할일 추가 
       this.todoItems.push(obj);
-      
+    },
+    removeOneItem: function(targetItem,index){
+      console.log(`targetItem = ${targetItem.item}`);
+      localStorage.removeItem(targetItem.item); //localStorage에서 삭제
+      this.todoItems.splice(index,1); // todoItem 배열에서 삭제
     },
   },
   created: function() {
