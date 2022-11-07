@@ -1,6 +1,5 @@
 <template>
   <div class="inputBox shadow" >
-    <!--input "newTodoItem"  동기화 할수 있도록 data와 메서드에서 localStoraeg 에 추가 -->
     <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
     <span class="addContainer" @click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
@@ -17,12 +16,9 @@ export default {
       newTodoItem: "",
     }
   },
-
   methods:{
     addTodo: function(){
       if(this.newTodoItem !==''){
-        console.log('call');
-        console.log(this.newTodoItem);
         this.$emit('addTodoItem',this.newTodoItem)
         this.claerInput();
       }   
