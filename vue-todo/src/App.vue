@@ -5,7 +5,9 @@
     지금은 단일데이터라서 그냥 바로 데이터로 보내지만 object로 받아서 상위컴포넌트에서 가공해서 사용가능
     -->
     <TodoInput @addTodoItem="addOneItem"></TodoInput>
-    <TodoList :listTodoItems="todoItems" @removeItem="removeOneItem"></TodoList>
+    <TodoList :listTodoItems="todoItems" 
+      @removeItem="removeOneItem" 
+      @toggleClick="toggleOneItem"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -35,6 +37,14 @@ export default {
       console.log(`targetItem = ${targetItem.item}`);
       localStorage.removeItem(targetItem.item); //localStorage에서 삭제
       this.todoItems.splice(index,1); // todoItem 배열에서 삭제
+    },
+    toggleOneItem: function(targetItem,index){
+      // targetItem.completed = !targetItem.completed;
+      // 전달받은 값에 조작을 가하지않고, 해당 컴포넌트에 데이터로 접근해서 데이터 가공 
+      // 강의에서는 이렇게 사용해서 그렇지 아래처럼 처리하면, index만 받아와서도 처리가능해 보인다.
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      localStorage.removeItem(targetItem.item);
+      localStorage.setItem(targetItem.item,JSON.stringify(targetItem));
     },
   },
   created: function() {
