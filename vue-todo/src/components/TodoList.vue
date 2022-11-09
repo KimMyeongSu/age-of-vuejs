@@ -18,14 +18,8 @@
 export default {
   props: ['listTodoItems'],
   methods: {
-    removeTodo: function(todoItem,index){
-      this.$emit('removeItem',todoItem,index)
-    },
-    toggleComplete: function(todoItem,index){
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item,JSON.stringify(todoItem));
-    }
+    removeTodo: function(todoItem,index){ this.$emit('removeItem',todoItem,index) },
+    toggleComplete: function(todoItem,index){ this.$emit('toggleClick',todoItem,index) },
   }
 }
 </script>
