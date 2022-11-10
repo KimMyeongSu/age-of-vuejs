@@ -9,7 +9,6 @@
       @removeItem="removeOneItem" 
       @toggleClick="toggleOneItem"></TodoList>
     <TodoFooter @clearLocalStorge="clearAll"></TodoFooter>
-    <TodoFooter></TodoFooter>
   </div>
 </template>
 
