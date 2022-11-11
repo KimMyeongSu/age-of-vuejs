@@ -18,8 +18,8 @@
 export default {
   props: ['listTodoItems'],
   methods: {
-    removeTodo: function(todoItem,index){ this.$emit('removeItem',todoItem,index) },
-    toggleComplete: function(todoItem,index){ this.$emit('toggleClick',todoItem,index) },
+    removeTodo(todoItem,index){ this.$emit('removeItem',todoItem,index) },
+    toggleComplete(todoItem,index){ this.$emit('toggleClick',todoItem,index) },
   }
 }
 </script>

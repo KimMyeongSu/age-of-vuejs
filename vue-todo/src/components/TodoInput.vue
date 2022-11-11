@@ -17,13 +17,13 @@ export default {
     }
   },
   methods:{
-    addTodo: function(){
+    addTodo(){
       if(this.newTodoItem !==''){
         this.$emit('addTodoItem',this.newTodoItem)
         this.claerInput();
       }   
     },
-    claerInput: function(){
+    claerInput(){
       this.newTodoItem= null;
     },
   }
