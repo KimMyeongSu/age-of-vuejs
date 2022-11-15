@@ -19,7 +19,21 @@ let content2 = `Hi,
 ```
 
 ### Enhanced Object Literals 
-내용추가
+Enhanced Object Literals - 향상된 객체 리터럴 
+```javascript 
+let ductionary = {
+	//아래 코드는 동일하게 동작 
+	// Function 키워드 빼고 ()로 간결하게 작성 가능 
+	// 뭐가 더 좋다라는 판단보다 내가 작성하는 코드에 일관성을 주어야할거같은데
+	// 컨벤션을 맞추면 둘중 하나를 사용해야 하기때문에 둘다 알고있어야함 
+	lookup: function() {
+		console.log('found sth');
+	},
+	lookup() {
+		console.log('found sth');
+	}
+}
+```
 
 ### Modules 
 내용추가
