@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    addOneItem(todoItem){
+    addOneItem: function(todoItem){
       let obj = {
         completed: false,
         item: todoItem
@@ -33,12 +33,12 @@ export default {
       localStorage.setItem(todoItem,JSON.stringify(obj)); //localStorage에 할일 추가 
       this.todoItems.push(obj);
     },
-    removeOneItem(targetItem,index){
+    removeOneItem: function(targetItem,index){
       console.log(`targetItem = ${targetItem.item}`);
       localStorage.removeItem(targetItem.item); //localStorage에서 삭제
       this.todoItems.splice(index,1); // todoItem 배열에서 삭제
     },
-    toggleOneItem(targetItem,index){
+    toggleOneItem: function(targetItem,index){
       // targetItem.completed = !targetItem.completed;
       // 전달받은 값에 조작을 가하지않고, 해당 컴포넌트에 데이터로 접근해서 데이터 가공 
       // 강의에서는 이렇게 사용해서 그렇지 아래처럼 처리하면, index만 받아와서도 처리가능해 보인다.
@@ -46,7 +46,7 @@ export default {
       localStorage.removeItem(targetItem.item);
       localStorage.setItem(targetItem.item,JSON.stringify(targetItem));
     },
-    clearAll(){
+    clearAll: function(){
       localStorage.clear();
       // location.reload(); // reload 없이 그냥 해당 데이터만 비워주면 됌
       this.todoItems='';
@@ -61,10 +61,10 @@ export default {
         }
   },
   components: {
-    TodoHeader,
-    TodoInput,
-    TodoList,
-    TodoFooter
+    TodoHeader: TodoHeader,
+    TodoInput: TodoInput,
+    TodoList: TodoList,
+    TodoFooter: TodoFooter
   }  
 }
 </script>
