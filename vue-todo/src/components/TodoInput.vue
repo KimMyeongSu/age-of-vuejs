@@ -4,16 +4,23 @@
     <span class="addContainer" @click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+      <PopModal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">custom header</h3>
+      </PopModal>
   </div>
 </template>
 
 <script>
+import PopModal from './common/popModal.vue';
+
 export default {
   created(){  
   },
   data(){
     return {
       newTodoItem: "",
+      showModal: false,
     }
   },
   methods:{
@@ -26,6 +33,9 @@ export default {
     claerInput(){
       this.newTodoItem= null;
     },
+  },
+  components: {
+    PopModal
   }
 }
 </script>
