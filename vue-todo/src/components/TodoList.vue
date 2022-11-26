@@ -1,7 +1,7 @@
 <template>
     <section>
     <ul>
-      <li class="shadow" v-for="(todoItem,index) in listTodoItems" :key="index">
+      <li class="shadow" v-for="(todoItem,index) in this.$store.state.todoItems" :key="index">
         <i class="checkBtn fas fa-check"  
         :class="{checkBtnCompleted: todoItem.completed}" 
         @click="toggleComplete(todoItem, index)"></i>
@@ -20,8 +20,9 @@ export default {
   methods: {
     removeTodo(todoItem,index){ this.$emit('removeItem',todoItem,index) },
     toggleComplete(todoItem,index){ this.$emit('toggleClick',todoItem,index) },
-  }
+  },
 }
+
 </script>
 
 <style scoped>
